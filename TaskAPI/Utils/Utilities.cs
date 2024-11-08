@@ -11,27 +11,23 @@ namespace TaskAPI.Utils
     public static class Utilities
     {
 
-        public static bool CheckIfInputsAreNull(Type type, string[] excludeproperties, NameValueCollection form)
+        public static bool CheckIfInputsAreNull(Type type, string[] excludeProperties, NameValueCollection form,out string propertynull)
         {
-
-            List<PropertyInfo> props = type.GetProperties().ToList();
-
-
-            foreach (PropertyInfo prop in props)
+            foreach (var prop in type.GetProperties())
             {
                 string name = prop.Name.ToLower();
-                if (!excludeproperties.Contains(name)){
 
-                    if (!String.IsNullOrWhiteSpace(form.Get(name)))
+                if (!excludeProperties.Contains(name))
+                {
+                    if (string.IsNullOrWhiteSpace(form.Get(name)) || prop.PropertyType == typeof(int[]) && !(name.StartsWith("[") && name.EndsWith("]")))
                     {
+                        propertynull = name;
+                        return true;
                     }
-                    Trace.WriteLine(form.Get(name));
-                    Trace.WriteLine(form.Get(name));
                 }
             }
-
-            return true;
-
+            propertynull = string.Empty;
+            return false;
         }
     }
 }

@@ -1,34 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\",
+  "WorkspaceRootPath": "D:\\Code\\AngularTask\\TaskAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\training\\angularjs\\angulartask\\taskapi\\utils\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:utils\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\code\\angulartask\\taskapi\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\training\\angularjs\\angulartask\\taskapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\code\\angulartask\\taskapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\respository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:respository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\code\\angulartask\\taskapi\\app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\code\\angulartask\\taskapi\\utils\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:utils\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\models\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:models\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\models\\interests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:models\\interests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\models\\statecity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:models\\statecity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\code\\angulartask\\taskapi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,90 +42,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Utilities.cs",
-              "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Utils\\Utilities.cs",
-              "RelativeDocumentMoniker": "Utils\\Utilities.cs",
-              "ToolTip": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Utils\\Utilities.cs",
-              "RelativeToolTip": "Utils\\Utilities.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAnwB4AAAAMAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "WebApiConfig.cs",
+              "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\App_Start\\WebApiConfig.cs",
+              "RelativeDocumentMoniker": "App_Start\\WebApiConfig.cs",
+              "ToolTip": "D:\\Code\\AngularTask\\TaskAPI\\App_Start\\WebApiConfig.cs",
+              "RelativeToolTip": "App_Start\\WebApiConfig.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAywBUAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T12:05:03.219Z",
+              "WhenOpened": "2024-11-08T17:53:33.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TestController.cs",
+              "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Controllers\\TestController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TestController.cs",
+              "ToolTip": "D:\\Code\\AngularTask\\TaskAPI\\Controllers\\TestController.cs",
+              "RelativeToolTip": "Controllers\\TestController.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAD4vywAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-08T17:47:22.373Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Models\\User.cs",
-              "ToolTip": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Models\\User.cs",
-              "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAUwBUAAAAWAAAAAAAAAA==",
+              "Title": "Utilities.cs",
+              "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Utils\\Utilities.cs",
+              "RelativeDocumentMoniker": "Utils\\Utilities.cs",
+              "ToolTip": "D:\\Code\\AngularTask\\TaskAPI\\Utils\\Utilities.cs",
+              "RelativeToolTip": "Utils\\Utilities.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAuwBwAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T10:51:06.773Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Interests.cs",
-              "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Models\\Interests.cs",
-              "RelativeDocumentMoniker": "Models\\Interests.cs",
-              "ToolTip": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Models\\Interests.cs",
-              "RelativeToolTip": "Models\\Interests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T09:27:07.795Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Message.cs",
-              "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Models\\Message.cs",
-              "RelativeDocumentMoniker": "Models\\Message.cs",
-              "ToolTip": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Models\\Message.cs",
-              "RelativeToolTip": "Models\\Message.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T08:57:49.894Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "StateCity.cs",
-              "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Models\\StateCity.cs",
-              "RelativeDocumentMoniker": "Models\\StateCity.cs",
-              "ToolTip": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Models\\StateCity.cs",
-              "RelativeToolTip": "Models\\StateCity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T07:47:03.774Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Respository\\UserRepository.cs",
-              "RelativeDocumentMoniker": "Respository\\UserRepository.cs",
-              "ToolTip": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Respository\\UserRepository.cs",
-              "RelativeToolTip": "Respository\\UserRepository.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAgwFcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T07:39:25.857Z",
+              "WhenOpened": "2024-11-08T17:24:18.003Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "UserController.cs",
-              "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Controllers\\UserController.cs",
+              "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\Code\\AngularTask\\TaskAPI\\Controllers\\UserController.cs",
               "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAjwEwAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAuwEsAAADMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T07:30:32.645Z",
+              "WhenOpened": "2024-11-08T17:22:24.241Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Web.config",
+              "RelativeDocumentMoniker": "Web.config",
+              "ToolTip": "D:\\Code\\AngularTask\\TaskAPI\\Web.config",
+              "RelativeToolTip": "Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAACHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-11-08T17:19:58.941Z",
               "EditorCaption": ""
             }
           ]

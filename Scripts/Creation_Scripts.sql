@@ -25,7 +25,7 @@ CREATE TABLE Cities (
 go
 
 /* Creating the stored procedure for retreving the state and city */
-alter proc spGetCitiesState 
+create proc spGetCitiesState 
 as
 begin
 	select s.StateName as State,c.CityName as City from states as s

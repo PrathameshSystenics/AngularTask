@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
-using TaskAPI.Respository;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
-using TaskAPI.Models;
-using System;
 using System.Net.Http;
 using System.Web;
-using System.IO;
-using System.Threading.Tasks;
-using System.Linq;
+using System.Web.Http;
+using TaskAPI.Models;
+using TaskAPI.Respository;
 using TaskAPI.Utils;
 
 namespace TaskAPI.Controllers
@@ -26,7 +24,6 @@ namespace TaskAPI.Controllers
         {
             try
             {
-
                 Dictionary<string, List<string>> statecity = UserRepository.GetStateCities();
 
                 if (statecity == null)
@@ -74,7 +71,10 @@ namespace TaskAPI.Controllers
                 {
                     return Content<Message>(HttpStatusCode.Forbidden, new Message() { message = "Must pass the data in FormData" });
                 }
-                Utilities.CheckIfInputsAreNull(typeof(User), new string[] { "id", "interests", "profile" },HttpContext.Current.Request.Form);
+                else if (Utilities.CheckIfInputsAreNull(typeof(User), new string[] { "id", "interests", "profile" }, HttpContext.Current.Request.Form,out string property))
+                {
+                    return Content<Message>(HttpStatusCode.UnsupportedMediaType, new Message() { message = string.IsNullOrWhiteSpace(property)?"One or more fields are empty":$"{property} Field is required" });
+                }
 
                 User user = new User()
                 {
@@ -86,13 +86,13 @@ namespace TaskAPI.Controllers
                     DateOfBirth = Convert.ToDateTime(HttpContext.Current.Request.Form.Get("dateofbirth")),
                     Email = HttpContext.Current.Request.Form.Get("email"),
                     Gender = HttpContext.Current.Request.Form.Get("gender"),
-                    IdofInterests = HttpContext.Current.Request.Form.Get("idofinterests").Trim('[', ']')        // Remove the square brackets
-                      .Split(',').ToList()            // Split by comma
-                      .Select(int.Parse)     // Convert each substring to int
+                    IdofInterests = HttpContext.Current.Request.Form.Get("idofinterests").Trim('[', ']')
+                      .Split(',').ToList()
+                      .Select(int.Parse)
                       .ToArray(),
-                    Password= HttpContext.Current.Request.Form.Get("password"),
-                    PhoneNo= HttpContext.Current.Request.Form.Get("phoneno"),
-                    State= HttpContext.Current.Request.Form.Get("state"),
+                    Password = HttpContext.Current.Request.Form.Get("password"),
+                    PhoneNo = HttpContext.Current.Request.Form.Get("phoneno"),
+                    State = HttpContext.Current.Request.Form.Get("state"),
                 };
 
                 return Ok<Message>(new Message() { message = "User Registered Successfully", result = user });

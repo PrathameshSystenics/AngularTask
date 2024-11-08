@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MultipartDataMediaFormatter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -17,6 +19,7 @@ namespace TaskAPI
 
             // Removing the XML Formatter from the api
             config.Formatters.Remove(config.Formatters.XmlFormatter);
+            config.Formatters.Add(new FormMultipartEncodedMediaTypeFormatter());
 
             // Adding the cors to the api to serve the request
             // TODO: Apply your localhost path only

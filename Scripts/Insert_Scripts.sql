@@ -74,3 +74,18 @@ INSERT INTO Cities (CityName, StateID) VALUES
 ('Gwalior', 10),
 ('Jabalpur', 10);
 go
+
+-- inserting the data into the interests
+INSERT INTO Interests (interest) VALUES 
+('Traveling'),
+('Photography'),
+('Cooking'),
+('Reading'),
+('Gardening'),
+('Fitness and Exercise'),
+('Music'),
+('Painting'),
+('Technology and Gadgets'),
+('Coding'),
+('Volunteering');
+go

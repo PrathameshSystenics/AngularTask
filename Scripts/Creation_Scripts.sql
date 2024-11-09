@@ -141,8 +141,8 @@ go
 
 
 -- stored procedure to get the user by its id
-create proc spGetUsers
-@id int null
+alter proc spGetUsers
+@id int=0
 as
 begin
 	select u.*,i.id as interestid,i.interest
@@ -151,6 +151,49 @@ begin
 	on im.userid=u.id
 	join Interests as i
 	on im.interestid=i.id
-	where (@id=0 or u.id=@id)
+	where (@id=0 or u.id=@id) and u.isdeleted=0
 	order by u.createdon desc
+end
+go
+
+-- stored Procedure for deleting the user soft delete
+alter proc spDeleteUser
+@id int,
+@issuccess bit output
+as
+begin
+	-- updating the user as isdeleted=1
+	update Users set isdeleted=1,deletedon=getdate()
+	where id=@id
+	set @issuccess=1
+end
+go
+
+-- stored procedure for updating the user
+create proc spUpdateUser
+@interesttable interests readonly,
+@FirstName NVARCHAR(100),
+@LastName NVARCHAR(100),
+@Email NVARCHAR(MAX),
+@Password NVARCHAR(MAX),
+@DateOfBirth DATE,
+@Age INT,
+@Gender NVARCHAR(80),
+@State NVARCHAR(MAX),
+@City NVARCHAR(MAX),
+@Address NVARCHAR(MAX),
+@PhoneNo NVARCHAR(MAX),
+@Profile NVARCHAR(MAX),
+@issuccess bit out
+as
+begin
+	begin try
+		begin transaction
+
+			update set 
+
+	end try
+	begin catch
+
+	end catch
 end

@@ -53,5 +53,17 @@ namespace TaskAPI.Utils
                 return null;
             }
         }
+
+        /// <summary>
+        /// Checks the filename extension if its valid from the passed <paramref name="extensions"/> array
+        /// </summary>
+        /// <param name="filename"> to check the Validation</param>
+        /// <param name="extensions"> Valid Extension starting with period(.)</param>
+        /// <returns><see langword="true"/> if the Filename Extension is valid otherwise <see langword="false"/></returns>
+        public static bool IsFileExtensionValid(string filename, params string[] extensions)
+        {
+            string extension = Path.GetExtension(filename);
+            return extensions.Contains(extension);
+        }
     }
 }

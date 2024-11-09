@@ -17,7 +17,7 @@ exec spGetInterests
 declare @issuccess1 bit
 
 declare @interests as interests
-insert into @interests values (1),(21),(3),(4)
+insert into @interests values (1),(2),(3),(4)
 select * from @interests
 
 EXEC [spAdduser]
@@ -49,3 +49,10 @@ join interestsmapping as im
 on u.id=im.userid
 join Interests as i
 on im.interestid=i.id
+
+-- getting the user
+exec spGetUsers 2
+
+-- undelete the user
+update Users set isdeleted=0
+where id=2

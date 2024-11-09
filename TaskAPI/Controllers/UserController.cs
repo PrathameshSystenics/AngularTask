@@ -81,6 +81,10 @@ namespace TaskAPI.Controllers
                 {
                     ModelState.AddModelError("idofinterests", "IdofInterests Must be Provided in the form of array");
                 }
+                if (user.ProfileImage != null && !Utilities.IsFileExtensionValid(user.ProfileImage.FileName, ".png", ".jpeg", ".jpg"))
+                {
+                    ModelState.AddModelError("profileimage", "image must have the extensions as .png,.jpeg,.jpg");
+                }
 
 
                 if (ModelState.IsValid)
@@ -90,7 +94,7 @@ namespace TaskAPI.Controllers
                     if (profileimageurl != null)
                     {
                         user.Profile = profileimageurl;
-                        if (UserRepository.AddUser(user))
+                        if (UserRepository.AddUpdateUser(user, "spAddUser"))
                         {
                             return Ok<Message>(new Message() { message = "User Registered Successfully" });
                         }
@@ -148,11 +152,7 @@ namespace TaskAPI.Controllers
             try
             {
                 List<User> users = UserRepository.GetUsers();
-                if (users.Count == 0)
-                {
-                    return Content<Message>(HttpStatusCode.NotFound, new Message() { message = "No User Found" });
-                }
-                return Ok(new { users = users });
+                return Ok(new { users = users, count = users.Count });
             }
             catch (Exception)
             {
@@ -160,6 +160,101 @@ namespace TaskAPI.Controllers
             }
         }
 
+        // DELETE: /api/user/Users/{id}
+        /// <summary>
+        /// Deletes the User for the passed <paramref name="id"/>
+        /// </summary>
+        /// <param name="id"> of the <see cref="User"/> to be Deleted</param>
+        /// <returns></returns>
+        [HttpDelete]
+        [ActionName("Users")]
+        public IHttpActionResult UserDelete(int id)
+        {
+            try
+            {
+                if (UserRepository.GetUsers(id).FirstOrDefault() != null && UserRepository.DeleteUser(id))
+                {
+                    return Ok<Message>(new Message() { message = "User Deleted Successfully" });
+                }
+                return Content<Message>(HttpStatusCode.NotFound, new Message() { message = "No User Found" });
+            }
+            catch (Exception)
+            {
+                return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong" });
+            }
+        }
+
+        // PUT: /api/user/users/{id}
+        /// <summary>
+        /// Updates the User By passing the ID of the User and <see cref="User"/> Model
+        /// </summary>
+        /// <param name="id"> of the User want to Update</param>
+        /// <param name="user"> Model by autobinding</param>
+        /// <returns></returns>
+        [ActionName("Users")]
+        [HttpPut]
+        public IHttpActionResult UpdateUser(int id, User user)
+        {
+            try
+            {
+                if (!Request.Content.IsMimeMultipartContent())
+                {
+                    return Content<Message>(HttpStatusCode.Forbidden, new Message() { message = "Must pass the data in FormData" });
+                }
+
+                User userupdater = UserRepository.GetUsers(id).FirstOrDefault();
+                if (userupdater == null)
+                {
+                    return Content<Message>(HttpStatusCode.NotFound, new Message() { message = "No User Found" });
+                }
+
+                if (!Utilities.IfInputisArray(user.IdofInterests, out int[] idofinterests))
+                {
+                    ModelState.AddModelError("idofinterests", "IdofInterests Must be Provided in the form of array");
+                }
+                if (user.ProfileImage != null && !Utilities.IsFileExtensionValid(user.ProfileImage.FileName, ".png", ".jpeg", ".jpg"))
+                {
+                    ModelState.AddModelError("profileimage", "image must have the extensions as .png,.jpeg,.jpg");
+                }
+
+                user.Profile = string.IsNullOrWhiteSpace(userupdater.Profile) ? user.Profile : userupdater.Profile;
+                // removing the modelstate error if the profile image is not null
+                if (String.IsNullOrWhiteSpace(user.Profile) && user.ProfileImage == null)
+                {
+                    ModelState.AddModelError("profileimage", "Upload the Image");
+                }
+                // when the profile is not null then removing the Modelstate Error
+                else if (!String.IsNullOrWhiteSpace(user.Profile) && user.ProfileImage == null)
+                {
+                    ModelState.Remove("user.profileimage");
+                }
+
+
+                if (ModelState.IsValid)
+                {
+                    user.Id = id;
+                    user.InterestsId = idofinterests;
+
+                    if (user.ProfileImage != null)
+                    {
+                        user.Profile = Utilities.SaveFile(user.ProfileImage.Buffer, HttpContext.Current.Request.MapPath("~/Content/Images"), user.ProfileImage.FileName);
+                    }
+
+                    if (UserRepository.AddUpdateUser(user, "spUpdateUser"))
+                    {
+                        return Ok<Message>(new Message() { message = "User Updated Successfully" });
+                    }
+
+                    return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong while registering the User" });
+
+                }
+                return Content<Message>(HttpStatusCode.BadRequest, new Message() { message = "One or More Fields is Required", errors = ModelState.Values.SelectMany(e => e.Errors).Select(e => e.ErrorMessage) });
+            }
+            catch (Exception)
+            {
+                return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong" });
+            }
+        }
 
     }
 }

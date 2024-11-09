@@ -57,16 +57,22 @@ namespace TaskAPI.Respository
 
 
         /// <summary>
-        /// Adds the User into the Database using Dapper Call
+        /// Adds or Updates the User into the Database using Dapper Call.<br></br>
+        /// For Adding the user into the database use the <paramref name="procedurename"/> as <code>"spAddUser"</code>
+        /// For Updating the User use the <paramref name="procedurename"/> as <code>"spUpdateUser"</code>
         /// </summary>
         /// <param name="user">The Model of the User Mapped with its properties</param>
         /// <returns><see langword="true"/> if the Insertion is successful otherwise <see langword="false"/>.</returns>
-        public static bool AddUser(User user)
+        public static bool AddUpdateUser(User user,string procedurename)
         {
             try
             {
                 DynamicParameters parameters = new DynamicParameters();
 
+                if (procedurename.Equals("spUpdateUser"))
+                {
+                    parameters.Add("@id", user.Id, DbType.Int32);
+                }
                 parameters.Add("@interesttable", ToDataTable(user.InterestsId).AsTableValuedParameter("interests"), DbType.Object);
                 parameters.Add("@FirstName", user.FirstName, DbType.String);
                 parameters.Add("@LastName", user.LastName, DbType.String);
@@ -86,7 +92,7 @@ namespace TaskAPI.Respository
                 {
                     conn.Open();
 
-                    int rowsaffected = conn.Execute("spAddUser", parameters, commandType: CommandType.StoredProcedure);
+                    int rowsaffected = conn.Execute(procedurename, parameters, commandType: CommandType.StoredProcedure);
                     return parameters.Get<int>("@issuccess") == 1;
                 }
 
@@ -129,7 +135,6 @@ namespace TaskAPI.Respository
 
                 using (SqlConnection conn = Connection.GetConn())
                 {
-
                     List<User> users = conn.Query<User, Interests, User>("spGetUsers", (user, interest) =>
                     {
                         if (!userDictionary.TryGetValue(user.Id, out var currentUser))
@@ -154,5 +159,34 @@ namespace TaskAPI.Respository
                 return new List<User>();
             }
         }
+
+        /// <summary>
+        /// Deletes the User from the database
+        /// </summary>
+        /// <param name="userid">To Delete The User</param>
+        /// <returns><see langword="true"/> if the user is deleted successfully otherwise <see langword="false"/></returns>
+        public static bool DeleteUser(int userid)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+
+                parameters.Add("@id", userid, DbType.Int32);
+                parameters.Add("@issuccess", 0, DbType.Int32, ParameterDirection.Output);
+
+                using (SqlConnection conn = Connection.GetConn())
+                {
+                    int rowsaffected = conn.Execute("spDeleteUser",parameters, commandType: CommandType.StoredProcedure);
+                    return parameters.Get<int>("@issuccess") == 1 && rowsaffected == 1;
+
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
     }
 }

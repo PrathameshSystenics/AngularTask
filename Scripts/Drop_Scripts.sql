@@ -20,3 +20,6 @@ drop table Users
 
 -- clearing the data of the interests mapping
 truncate table InterestsMapping
+
+-- drop the database
+drop database angulartask

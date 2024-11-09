@@ -66,10 +66,10 @@ create table Interests(
 go
 
 -- stored procedure for listing the interests
-create proc spGetInterests
+alter proc spGetInterests
 as
 begin
-	select * from Interests
+	select id as interestid,interest from Interests
 end
 go
 
@@ -96,7 +96,7 @@ create type interests as table
 go
 
 -- creating the stored procedure for adding the user into the database
-alter proc spAddUser
+create proc spAddUser
 @interesttable interests readonly,
 @FirstName NVARCHAR(100),
 @LastName NVARCHAR(100),
@@ -141,7 +141,7 @@ go
 
 
 -- stored procedure to get the user by its id
-alter proc spGetUsers
+create proc spGetUsers
 @id int=0
 as
 begin
@@ -157,7 +157,7 @@ end
 go
 
 -- stored Procedure for deleting the user soft delete
-alter proc spDeleteUser
+create proc spDeleteUser
 @id int,
 @issuccess bit output
 as

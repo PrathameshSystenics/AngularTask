@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Code\\AngularTask\\TaskAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\code\\angulartask\\taskapi\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|D:\\Code\\AngularTask\\TaskAPI\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -42,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,7 +58,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "D:\\Code\\AngularTask\\TaskAPI\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-09T16:56:23.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Web.config",
               "RelativeDocumentMoniker": "Web.config",
@@ -67,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Interests.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Models\\Interests.cs",
               "RelativeDocumentMoniker": "Models\\Interests.cs",
@@ -80,7 +97,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Respository\\UserRepository.cs",
               "RelativeDocumentMoniker": "Respository\\UserRepository.cs",
@@ -93,7 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Message.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Models\\Message.cs",
               "RelativeDocumentMoniker": "Models\\Message.cs",
@@ -106,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Connection.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Database\\Connection.cs",
               "RelativeDocumentMoniker": "Database\\Connection.cs",
@@ -119,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
@@ -132,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Utilities.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Utils\\Utilities.cs",
               "RelativeDocumentMoniker": "Utils\\Utilities.cs",
@@ -145,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",

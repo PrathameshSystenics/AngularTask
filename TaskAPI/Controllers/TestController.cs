@@ -20,6 +20,13 @@ namespace TaskAPI.Controllers
         public HttpFile image { get; set; }
     }
 
+    public class JSONBody
+    {
+        public int id { get; set; }
+
+        public string content { get; set; }
+    }
+
     public class TestController : ApiController
     {
 
@@ -46,7 +53,13 @@ namespace TaskAPI.Controllers
                 File.WriteAllBytes(HttpContext.Current.Server.MapPath("~/Content") + "/" + uploader.image.FileName, uploader.image.Buffer);
                 return Ok(new { message = "The Uploaded DAta", data = uploader, image = uploader.image.FileName });
             }
-            return Content(System.Net.HttpStatusCode.NotAcceptable, ModelState.Values.Select(e => e.Errors).Select(e=>e.Select(e1=>e1.ErrorMessage)));
+            return Content(System.Net.HttpStatusCode.NotAcceptable, ModelState.Values.Select(e => e.Errors).Select(e => e.Select(e1 => e1.ErrorMessage)));
+        }
+
+        [HttpPost]
+        public IHttpActionResult GetJsonFile(JSONBody json)
+        {
+            return Ok(json);
         }
     }
 }

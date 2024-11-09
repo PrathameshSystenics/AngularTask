@@ -2,7 +2,7 @@
 {
     public class Interests
     {
-        public int Id { get; set; }
+        public int InterestId { get; set; }
         public string Interest { get; set; }
     }
 }

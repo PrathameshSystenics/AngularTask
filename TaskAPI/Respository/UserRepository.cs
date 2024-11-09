@@ -15,7 +15,7 @@ namespace TaskAPI.Respository
         /// <summary>
         /// Getting the State and Cities from the Database and returing it in the form of Dictionary
         /// </summary>
-        /// <returns>Dictionary of key as state and list of city for related key.</returns>
+        /// <returns><see cref="Dictionary{String, List{String}}"/> Dictionary of key as state and list of city for related key.</returns>
         public static Dictionary<string, List<string>> GetStateCities()
         {
             try
@@ -39,7 +39,7 @@ namespace TaskAPI.Respository
         /// <summary>
         /// The List of Interest from the database
         /// </summary>
-        /// <returns>List of Interest Class</returns>
+        /// <returns><see cref="List{Interests}"/> List of Interests Class</returns>
         public static List<Interests> GetInterests()
         {
             try
@@ -56,14 +56,18 @@ namespace TaskAPI.Respository
         }
 
 
-
+        /// <summary>
+        /// Adds the User into the Database using Dapper Call
+        /// </summary>
+        /// <param name="user">The Model of the User Mapped with its properties</param>
+        /// <returns><see langword="true"/> if the Insertion is successful otherwise <see langword="false"/>.</returns>
         public static bool AddUser(User user)
         {
             try
             {
                 DynamicParameters parameters = new DynamicParameters();
 
-                parameters.Add("@interesttable", ToDataTable(user.IdofInterests).AsTableValuedParameter("interests"), DbType.Object);
+                parameters.Add("@interesttable", ToDataTable(user.InterestsId).AsTableValuedParameter("interests"), DbType.Object);
                 parameters.Add("@FirstName", user.FirstName, DbType.String);
                 parameters.Add("@LastName", user.LastName, DbType.String);
                 parameters.Add("@Email", user.Email, DbType.String);
@@ -93,7 +97,12 @@ namespace TaskAPI.Respository
             }
         }
 
-        public static DataTable ToDataTable(int[] interestsid)
+        /// <summary>
+        /// Converts the Array of InterestsId into the Datatable, to be used as table valued parameter to inserting into the database
+        /// </summary>
+        /// <param name="interestsid"> <see cref="int[]"/> Of Interests Id to be inserted</param>
+        /// <returns>Datatable with one Column as Interestid</returns>
+        private static DataTable ToDataTable(int[] interestsid)
         {
             DataTable dt = new DataTable();
 
@@ -105,6 +114,45 @@ namespace TaskAPI.Respository
                 dt.Rows.Add(id);
             }
             return dt;
+        }
+
+        /// <summary>
+        /// To get the List of users present in the database or to get the Single <see cref="User"/> by its ID.
+        /// </summary>
+        /// <param name="userid">to get the Data of the User of the passed id</param>
+        /// <returns><see cref="List{User}"/> List of the Users.</returns>
+        public static List<User> GetUsers(int userid = 0)
+        {
+            try
+            {
+                Dictionary<int, User> userDictionary = new Dictionary<int, User>();
+
+                using (SqlConnection conn = Connection.GetConn())
+                {
+
+                    List<User> users = conn.Query<User, Interests, User>("spGetUsers", (user, interest) =>
+                    {
+                        if (!userDictionary.TryGetValue(user.Id, out var currentUser))
+                        {
+                            currentUser = user;
+                            userDictionary.Add(currentUser.Id, currentUser);
+                        }
+
+                        if (interest != null)
+                        {
+                            currentUser.Interests.Add(interest);
+                        }
+
+                        return currentUser;
+                    }, new { id = userid }, splitOn: "interestid").Distinct().ToList();
+
+                    return users;
+                }
+            }
+            catch (Exception)
+            {
+                return new List<User>();
+            }
         }
     }
 }

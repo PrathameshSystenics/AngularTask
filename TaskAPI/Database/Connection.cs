@@ -9,7 +9,7 @@ namespace TaskAPI.Database
         {
             get
             {
-                return ConfigurationManager.ConnectionStrings["laptopdb"].ConnectionString;
+                return ConfigurationManager.ConnectionStrings["database"].ConnectionString;
             }
         }
 

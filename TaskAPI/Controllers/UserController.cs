@@ -34,7 +34,7 @@ namespace TaskAPI.Controllers
             }
             catch (Exception)
             {
-                return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong", status = "Failed" });
+                return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong" });
             }
         }
 
@@ -51,19 +51,24 @@ namespace TaskAPI.Controllers
                 List<Interests> interests = UserRepository.GetInterests();
                 if (interests.Count == 0)
                 {
-                    return Content<Message>(HttpStatusCode.NoContent, new Message() { message = "No Interests are Present", status = "Failed" });
+                    return Content<Message>(HttpStatusCode.NoContent, new Message() { message = "No Interests are Present" });
                 }
                 return Ok(new { interests = interests });
             }
             catch (Exception)
             {
-                return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong", status = "Failed" });
+                return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong" });
             }
         }
 
         // POST: /api/User/RegisterUser
+        /// <summary>
+        /// Adds the <paramref name="user"/> into the system by passing the required Properties.
+        /// </summary>
+        /// <param name="user">Model with Details</param>
+        /// <returns></returns>
         [HttpPost]
-        public IHttpActionResult Register()
+        public IHttpActionResult Register(User user)
         {
             try
             {
@@ -71,36 +76,87 @@ namespace TaskAPI.Controllers
                 {
                     return Content<Message>(HttpStatusCode.Forbidden, new Message() { message = "Must pass the data in FormData" });
                 }
-                else if (Utilities.CheckIfInputsAreNull(typeof(User), new string[] { "id", "interests", "profile" }, HttpContext.Current.Request.Form,out string property))
+
+                if (!Utilities.IfInputisArray(user.IdofInterests, out int[] idofinterests))
                 {
-                    return Content<Message>(HttpStatusCode.UnsupportedMediaType, new Message() { message = string.IsNullOrWhiteSpace(property)?"One or more fields are empty":$"{property} Field is required" });
+                    ModelState.AddModelError("idofinterests", "IdofInterests Must be Provided in the form of array");
                 }
 
-                User user = new User()
+
+                if (ModelState.IsValid)
                 {
-                    FirstName = HttpContext.Current.Request.Form.Get("firstname"),
-                    LastName = HttpContext.Current.Request.Form.Get("lastname"),
-                    Age = Convert.ToInt32(HttpContext.Current.Request.Form.Get("age")),
-                    Address = HttpContext.Current.Request.Form.Get("address"),
-                    City = HttpContext.Current.Request.Form.Get("city"),
-                    DateOfBirth = Convert.ToDateTime(HttpContext.Current.Request.Form.Get("dateofbirth")),
-                    Email = HttpContext.Current.Request.Form.Get("email"),
-                    Gender = HttpContext.Current.Request.Form.Get("gender"),
-                    IdofInterests = HttpContext.Current.Request.Form.Get("idofinterests").Trim('[', ']')
-                      .Split(',').ToList()
-                      .Select(int.Parse)
-                      .ToArray(),
-                    Password = HttpContext.Current.Request.Form.Get("password"),
-                    PhoneNo = HttpContext.Current.Request.Form.Get("phoneno"),
-                    State = HttpContext.Current.Request.Form.Get("state"),
-                };
+                    user.InterestsId = idofinterests;
+                    string profileimageurl = Utilities.SaveFile(user.ProfileImage.Buffer, HttpContext.Current.Request.MapPath("~/Content/Images"), user.ProfileImage.FileName);
+                    if (profileimageurl != null)
+                    {
+                        user.Profile = profileimageurl;
+                        if (UserRepository.AddUser(user))
+                        {
+                            return Ok<Message>(new Message() { message = "User Registered Successfully" });
+                        }
+                        else
+                        {
+                            return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong while registering the User" });
+                        }
+                    }
 
-                return Ok<Message>(new Message() { message = "User Registered Successfully", result = user });
-
+                }
+                return Content<Message>(HttpStatusCode.BadRequest, new Message() { message = "One or More Fields is Required", errors = ModelState.Values.SelectMany(e => e.Errors).Select(e => e.ErrorMessage) });
             }
             catch (Exception)
             {
-                return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong", status = "Failed" });
+                return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong" });
+            }
+        }
+
+        // GET: /api/User/Users/{id}
+        /// <summary>
+        /// Fetches the Single <see cref="User"/> by its id if not found returns No User Found.
+        /// </summary>
+        /// <param name="id">User id for fetching.</param>
+        /// <returns>Single <see cref="User"/> Details</returns>
+        [HttpGet]
+        public IHttpActionResult Users(int id)
+        {
+            try
+            {
+                if (id == 0)
+                {
+                    return Content<Message>(HttpStatusCode.NotFound, new Message() { message = "User does not exist" });
+                }
+                User user = UserRepository.GetUsers(id).FirstOrDefault();
+                if (user == null)
+                {
+                    return Content<Message>(HttpStatusCode.NotFound, new Message() { message = "No User Found" });
+                }
+                return Ok<User>(user);
+            }
+            catch (Exception)
+            {
+                return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong" });
+            }
+        }
+
+        // GET: /api/User/Users
+        /// <summary>
+        /// Used to Fetch the List of the user
+        /// </summary>
+        /// <returns><see cref="List{User}"/> User </returns>
+        [HttpGet]
+        public IHttpActionResult Users()
+        {
+            try
+            {
+                List<User> users = UserRepository.GetUsers();
+                if (users.Count == 0)
+                {
+                    return Content<Message>(HttpStatusCode.NotFound, new Message() { message = "No User Found" });
+                }
+                return Ok(new { users = users });
+            }
+            catch (Exception)
+            {
+                return Content<Message>(HttpStatusCode.InternalServerError, new Message() { message = "Something Went Wrong" });
             }
         }
 

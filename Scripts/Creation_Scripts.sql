@@ -50,7 +50,11 @@ create table [Users](
 	city nvarchar(max) not null,
 	address nvarchar(max) not null,
 	phoneno nvarchar(max) not null,
-	profile nvarchar(max) not null
+	profile nvarchar(max) not null,
+	isdeleted bit not null default 0,
+	deletedon datetime null,
+	updatedon datetime null,
+	createdon datetime not null default getdate()
 )
 go
 
@@ -92,7 +96,7 @@ create type interests as table
 go
 
 -- creating the stored procedure for adding the user into the database
-create proc spAddUser
+alter proc spAddUser
 @interesttable interests readonly,
 @FirstName NVARCHAR(100),
 @LastName NVARCHAR(100),
@@ -134,3 +138,19 @@ begin
 	end catch
 end
 go
+
+
+-- stored procedure to get the user by its id
+create proc spGetUsers
+@id int null
+as
+begin
+	select u.*,i.id as interestid,i.interest
+	from Users as u
+	join interestsMapping as im
+	on im.userid=u.id
+	join Interests as i
+	on im.interestid=i.id
+	where (@id=0 or u.id=@id)
+	order by u.createdon desc
+end

@@ -171,6 +171,7 @@ go
 
 -- stored procedure for updating the user
 create proc spUpdateUser
+@id int,
 @interesttable interests readonly,
 @FirstName NVARCHAR(100),
 @LastName NVARCHAR(100),
@@ -190,10 +191,37 @@ begin
 	begin try
 		begin transaction
 
-			update set 
+			-- update the user in the table
+			update Users 
+			set firstname=@FirstName,
+				lastname=@LastName,
+				email=@Email,
+				password=@Password,
+				dateofbirth=@DateOfBirth,
+				age=@Age,
+				gender=@Gender,
+				state=@State,
+				city=@City,
+				address=@Address,
+				phoneno=@PhoneNo,
+				profile=@Profile,
+				updatedon=getdate()
+			where id=@id
+
+			-- delete the old records from the interests table
+			delete from interestsMapping
+			where userid=@id
+
+			-- insert the latest interests
+			insert into interestsMapping 
+			select interestid,@id from @interesttable
+
+			set @issuccess=1
+		commit transaction
 
 	end try
 	begin catch
-
+		rollback transaction
+		set @issuccess=0
 	end catch
 end

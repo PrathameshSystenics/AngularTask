@@ -55,4 +55,9 @@ exec spGetUsers 2
 
 -- undelete the user
 update Users set isdeleted=0
-where id=2
+where id=4
+
+-- delete the user
+declare @issuccess bit
+exec spDeleteUser 2,@issuccess output
+select @issuccess as succedd

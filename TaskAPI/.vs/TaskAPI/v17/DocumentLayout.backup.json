@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\Code\\AngularTask\\TaskAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|D:\\Code\\AngularTask\\TaskAPI\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\code\\angulartask\\taskapi\\web.release.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:web.release.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\code\\angulartask\\taskapi\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|D:\\Code\\AngularTask\\TaskAPI\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,16 +31,12 @@
       "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:database\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\code\\angulartask\\taskapi\\utils\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|D:\\Code\\AngularTask\\TaskAPI\\utils\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:utils\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|D:\\Code\\AngularTask\\TaskAPI\\models\\interests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:models\\interests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\code\\angulartask\\taskapi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|D:\\Code\\AngularTask\\TaskAPI\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,20 +62,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
+              "Title": "Web.Release.config",
+              "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Web.Release.config",
+              "RelativeDocumentMoniker": "Web.Release.config",
+              "ToolTip": "D:\\Code\\AngularTask\\TaskAPI\\Web.Release.config",
+              "RelativeToolTip": "Web.Release.config",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-11-10T11:25:48.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "D:\\Code\\AngularTask\\TaskAPI\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-09T16:56:23.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Web.config",
               "RelativeDocumentMoniker": "Web.config",
               "ToolTip": "D:\\Code\\AngularTask\\TaskAPI\\Web.config",
               "RelativeToolTip": "Web.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAEgAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2024-11-09T16:42:43.965Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Interests.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Models\\Interests.cs",
               "RelativeDocumentMoniker": "Models\\Interests.cs",
@@ -75,12 +109,11 @@
               "RelativeToolTip": "Models\\Interests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T07:03:36.41Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-09T07:03:36.41Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Respository\\UserRepository.cs",
               "RelativeDocumentMoniker": "Respository\\UserRepository.cs",
@@ -88,12 +121,11 @@
               "RelativeToolTip": "Respository\\UserRepository.cs",
               "ViewState": "AgIAAFcAAAAAAAAAAAAowGcAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T05:05:56.245Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-09T05:05:56.245Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Message.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Models\\Message.cs",
               "RelativeDocumentMoniker": "Models\\Message.cs",
@@ -101,12 +133,11 @@
               "RelativeToolTip": "Models\\Message.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T04:41:22.341Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-09T04:41:22.341Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Connection.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Database\\Connection.cs",
               "RelativeDocumentMoniker": "Database\\Connection.cs",
@@ -114,12 +145,11 @@
               "RelativeToolTip": "Database\\Connection.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAYwBIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T04:38:10.149Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-09T04:38:10.149Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
@@ -127,12 +157,11 @@
               "RelativeToolTip": "Models\\User.cs",
               "ViewState": "AgIAABoAAAAAAAAAAADwvwYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T04:35:27.606Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-09T04:35:27.606Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Utilities.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Utils\\Utilities.cs",
               "RelativeDocumentMoniker": "Utils\\Utilities.cs",
@@ -140,12 +169,11 @@
               "RelativeToolTip": "Utils\\Utilities.cs",
               "ViewState": "AgIAACwAAAAAAAAAAAAowDYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T17:24:18.003Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-08T17:24:18.003Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\Code\\AngularTask\\TaskAPI\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
@@ -153,8 +181,7 @@
               "RelativeToolTip": "Controllers\\UserController.cs",
               "ViewState": "AgIAAEEAAAAAAAAAAAAIwEoAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T17:22:24.241Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-08T17:22:24.241Z"
             }
           ]
         }

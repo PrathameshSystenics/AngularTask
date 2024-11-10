@@ -1,19 +1,23 @@
-.container .d-flex-gap-4px{
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    flex-direction: row;
+.container .d-flex-gap-4px {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-direction: row;
 }
 
-.container .d-flex{
-    display: flex;
-    justify-content: center;
-    height: 80vh;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+.container .d-flex {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
 }
 
-.d-block{
-    display: block;
+.d-block {
+  display: block;
+}
+
+.margin-top {
+  margin-top: 20px;
 }

@@ -1,1 +1,160 @@
-<p>users works!</p>
+<div>
+  <!-- logo and title -->
+  <h3>
+    <span class="glyphicon glyphicon-user"></span>
+    Create User
+  </h3>
+
+  <!-- form displaying -->
+  <form class="margin-top">
+    <!-- profile image -->
+    <div class="form-group">
+      <label for="profile">Profile Image</label>
+      <input type="file" id="profile" class="form-control" />
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <!-- first name input  -->
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <input
+        type="text"
+        id="firstname"
+        class="form-control"
+        placeholder="First name"
+      />
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <!-- last name text box -->
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <input
+        type="text"
+        id="lastname"
+        class="form-control"
+        placeholder="Last Name"
+      />
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <!-- email address text box -->
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" class="form-control" placeholder="Email" />
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <!-- password box with eye symbol -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="input-group">
+        <input type="password" id="password" class="form-control" />
+        <div class="input-group-btn">
+          <button class="btn btn-default">
+            <span class="glyphicon glyphicon-eye-open"></span>
+          </button>
+        </div>
+      </div>
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <!-- Date of Birth  -->
+    <div class="form-group">
+      <label for="dob">Date Of Birth</label>
+      <input type="date" id="dob" class="form-control" form />
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <!-- age text box -->
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" id="age" class="form-control" disabled />
+      <span class="help-block">
+        Age Field will be autocalculated after assigning the Date of Birth
+      </span>
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <!-- Gender Field -->
+    <div class="form-group">
+      <label>Gender</label>
+      <div>
+        <div class="radio-inline"><input type="radio" id="gender" /> Male</div>
+        <div class="radio-inline">
+          <input type="radio" id="gender" /> Female
+        </div>
+        <div class="radio-inline"><input type="radio" id="gender" /> Other</div>
+      </div>
+    </div>
+
+    <!-- phone no -->
+    <div class="form-group">
+      <label for="phoneno">Phone Number</label>
+      <div class="input-group">
+        <div class="input-group-addon">+91</div>
+        <input
+          type="tel"
+          id="phoneno"
+          class="form-control"
+          placeholder="9909938333"
+        />
+      </div>
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <!-- Address Field -->
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea
+        id="address"
+        placeholder="Enter Address Over Here"
+        class="form-control"
+      ></textarea>
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <!-- State Dropdown -->
+    <div class="form-group">
+      <label for="state">State</label>
+      <select id="state" class="form-control">
+        <option value="">Select State</option>
+      </select>
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <!-- City -->
+    <div class="form-group">
+      <label for="city">City</label>
+      <select id="city" class="form-control">
+        <option value="">Select City</option>
+      </select>
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <!-- Interests Checkbox -->
+    <div class="form-group">
+      <label>Interests</label>
+      <div>
+        <div class="checkbox-inline">
+          <input type="checkbox" id="int1" />
+          <label for="int1"> Interest 1</label>
+        </div>
+        <div class="checkbox-inline">
+          <input type="checkbox" id="int1" />
+          <label for="int1"> Interest 1</label>
+        </div>
+      </div>
+      <!-- Render the Error Message over here -->
+    </div>
+
+    <div class="d-flex-btn">
+      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="reset" class="btn btn-default">Reset</button>
+    </div>
+  </form>
+
+  <hr class="horizontal-line" />
+
+  <app-userlisting></app-userlisting>
+</div>

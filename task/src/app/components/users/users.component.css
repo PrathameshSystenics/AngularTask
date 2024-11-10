@@ -1,12 +1,6 @@
-
 .checkbox-inline > label {
   font-weight: normal;
   user-select: none;
-}
-
-.d-flex-btn {
-  display: flex;
-  gap: 5px;
 }
 
 .horizontal-line {

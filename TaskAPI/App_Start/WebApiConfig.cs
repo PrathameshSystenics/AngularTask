@@ -1,6 +1,7 @@
 ﻿using MultipartDataMediaFormatter;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
@@ -23,7 +24,7 @@ namespace TaskAPI
 
             // Adding the cors to the api to serve the request
             // TODO: Apply your localhost path only
-            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
+            EnableCorsAttribute cors = new EnableCorsAttribute(ConfigurationManager.AppSettings["alloworigin"].ToString(), "*", "*");
             config.EnableCors(cors);
 
             config.Routes.MapHttpRoute(

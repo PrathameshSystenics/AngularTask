@@ -65,5 +65,15 @@ namespace TaskAPI.Utils
             string extension = Path.GetExtension(filename);
             return extensions.Contains(extension);
         }
+
+        /// <summary>
+        /// Checks if the file is present into the System.
+        /// </summary>
+        /// <param name="filepath"> To Check the File</param>
+        /// <returns><see langword="true"/> If the <paramref name="filepath"/> is Present otherwise <see langword="false"/></returns>
+        public static bool IsFilePresent(string filepath)
+        {
+            return File.Exists(filepath);
+        }
     }
 }

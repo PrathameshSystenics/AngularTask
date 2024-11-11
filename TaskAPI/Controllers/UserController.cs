@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using TaskAPI.Models;
 using TaskAPI.Respository;
 using TaskAPI.Utils;
 
 namespace TaskAPI.Controllers
 {
+    //[EnableCors("*","*","*")]
     public class UserController : ApiController
     {
 
@@ -152,6 +155,10 @@ namespace TaskAPI.Controllers
             try
             {
                 List<User> users = UserRepository.GetUsers();
+                users.ForEach(u =>
+                {
+                    u.Profile = Utilities.IsFilePresent(Path.Combine(HttpContext.Current.Request.MapPath("~/Content/Images"), u.Profile)) ? u.Profile : "profile.jpg";
+                });
                 return Ok(new { users = users, count = users.Count });
             }
             catch (Exception)

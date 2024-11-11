@@ -55,9 +55,12 @@ exec spGetUsers 2
 
 -- undelete the user
 update Users set isdeleted=0
-where id=4
+where id in (2,4,5,6,7)
 
 -- delete the user
 declare @issuccess bit
 exec spDeleteUser 2,@issuccess output
 select @issuccess as succedd
+
+-- show the deleted users
+select * from Users where isdeleted=1

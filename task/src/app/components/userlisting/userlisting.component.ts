@@ -38,7 +38,7 @@ export class UserlistingComponent implements OnInit {
         this.isLoading = false;
         this.isAlertBoxOpen = true;
         this.alerttype = 'Danger';
-        this.message = err;
+        this.message = "Something Went Wrong while Fetching the User."
       },
     });
   }
@@ -68,7 +68,7 @@ export class UserlistingComponent implements OnInit {
         this.isModalOpen = false;
       },
       error: (err) => {
-        this.message = err;
+        this.message = "Some Thing Went Wrong while Deleting the User.";
         this.isAlertBoxOpen = true;
         this.alerttype = 'Danger';
       },

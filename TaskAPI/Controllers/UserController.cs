@@ -94,6 +94,11 @@ namespace TaskAPI.Controllers
                 {
                     user.InterestsId = idofinterests;
                     string profileimageurl = Utilities.SaveFile(user.ProfileImage.Buffer, HttpContext.Current.Request.MapPath("~/Content/Images"), user.ProfileImage.FileName);
+
+                    if (user.DateOfBirth >= DateTime.Now)
+                    {
+                        return Content<Message>(HttpStatusCode.Forbidden, new Message() { message = "Birthdate cannot be in the future" });
+                    }
                     if (profileimageurl != null)
                     {
                         user.Profile = profileimageurl;

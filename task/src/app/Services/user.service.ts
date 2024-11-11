@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { BASE_URL } from '../app.module';
 import dayjs from 'dayjs';
 import { Message } from '../Models/message';
+import { StateListCity } from '../Models/statecity';
+import { ListInterest } from '../Models/interest';
 
 @Injectable({
   providedIn: 'root',
@@ -38,4 +40,15 @@ export class UserService {
   deleteUser(userid: number): Observable<Message> {
     return this.http.delete(`/api/user/users/${userid}`);
   }
+
+  // get the state and city
+  getStateCity(): Observable<StateListCity> {
+    return this.http.get<StateListCity>('/api/user/getstateandcity');
+  }
+
+  // get the interest list
+  getInterests(): Observable<ListInterest> {
+    return this.http.get<ListInterest>('/api/user/interests');
+  }
+
 }

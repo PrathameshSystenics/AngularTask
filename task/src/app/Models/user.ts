@@ -2,7 +2,7 @@ import { IInterest } from "./interest";
 import { City, State } from "./statecity";
 
 export interface IUserDetails {
-    Id: number,
+    Id: number ,
     FirstName: string,
     LastName: string,
     Email: string,

@@ -1,17 +1,63 @@
 <div>
-
   <!-- logo and title -->
   <h3>
     <span class="glyphicon glyphicon-user"></span>
     Create User
   </h3>
 
+  <app-alertbox
+    [Open]="isAlertBoxOpen"
+    [type]="alerttype"
+    (close)="onAlertBoxClose()"
+  >
+    <div>
+      {{ message }}
+    </div>
+  </app-alertbox>
+
   <!-- form displaying -->
-  <form class="margin-top">
+  <form
+    class="margin-top"
+    [formGroup]="reuserregisterform"
+    (ngSubmit)="submitForm()"
+  >
     <!-- profile image -->
     <div class="form-group">
       <label for="profile">Profile Image</label>
-      <input type="file" id="profile" class="form-control" />
+      <input
+        type="file"
+        id="profile"
+        class="form-control"
+        formControlName="ProfileImage"
+        accept=".jpg, .jpeg, .png"
+        (change)="fileUpload()"
+        (cancel)="fileUploadCancel()"
+        #profileimageinputfile
+        (close)="fileUploadCancel()"
+      />
+      <div *ngIf="uploadedimageurl">
+        <span class="font-bold">Preview : </span>
+        <div class="upload-image-wrapper">
+          <img [src]="uploadedimageurl" alt="Uploaded Image" />
+        </div>
+      </div>
+      <div
+        *ngIf="
+          reuserregisterform.controls.ProfileImage.hasError('wrongfileupload')
+        "
+      >
+        <span class="text-danger">The File Uploaded is Not Supported</span>
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          reuserregisterform.controls.ProfileImage.hasError('required') &&
+          reuserregisterform.controls.ProfileImage.touched &&
+          isFileDialogClosed
+        "
+      >
+        The Profile Image Field is required
+      </div>
       <!-- Render the Error Message over here -->
     </div>
 
@@ -23,7 +69,24 @@
         id="firstname"
         class="form-control"
         placeholder="First name"
+        formControlName="FirstName"
       />
+      <div *ngIf="reuserregisterform.controls.FirstName.touched">
+        <div
+          *ngIf="reuserregisterform.controls.FirstName.hasError('required')"
+          class=""
+        >
+          <span class="text-danger">The First Name Field Is Required</span>
+        </div>
+        <div
+          *ngIf="reuserregisterform.controls.FirstName.hasError('pattern')"
+          class=""
+        >
+          <span class="text-danger"
+            >The First Name should contain only characters.</span
+          >
+        </div>
+      </div>
       <!-- Render the Error Message over here -->
     </div>
 
@@ -35,42 +98,130 @@
         id="lastname"
         class="form-control"
         placeholder="Last Name"
+        formControlName="LastName"
       />
       <!-- Render the Error Message over here -->
+      <div *ngIf="reuserregisterform.controls.LastName.touched">
+        <div
+          *ngIf="reuserregisterform.controls.LastName.hasError('required')"
+          class=""
+        >
+          <span class="text-danger">The Last Name Field Is Required</span>
+        </div>
+        <div
+          *ngIf="reuserregisterform.controls.LastName.hasError('pattern')"
+          class=""
+        >
+          <span class="text-danger"
+            >The Last Name should contain only characters.</span
+          >
+        </div>
+      </div>
     </div>
 
     <!-- email address text box -->
     <div class="form-group">
       <label for="email">Email Address</label>
-      <input type="email" id="email" class="form-control" placeholder="Email" />
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        placeholder="Email"
+        formControlName="Email"
+      />
       <!-- Render the Error Message over here -->
+      <div *ngIf="reuserregisterform.controls.Email.touched">
+        <div
+          *ngIf="reuserregisterform.controls.Email.hasError('required')"
+          class=""
+        >
+          <span class="text-danger">The Email Field Is Required</span>
+        </div>
+        <div
+          *ngIf="reuserregisterform.controls.Email.hasError('email')"
+          class=""
+        >
+          <span class="text-danger">Enter Correct Email Id.</span>
+        </div>
+      </div>
     </div>
 
     <!-- password box with eye symbol -->
     <div class="form-group">
       <label for="password">Password</label>
       <div class="input-group">
-        <input type="password" id="password" class="form-control" />
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="Password"
+          #passwordinput
+        />
         <div class="input-group-btn">
-          <button class="btn btn-default">
-            <span class="glyphicon glyphicon-eye-open"></span>
+          <button class="btn btn-default" (click)="toggleEye(passwordinput)" type="button">
+            <span class="glyphicon glyphicon-eye-open " id="eye-icon"></span>
           </button>
         </div>
       </div>
       <!-- Render the Error Message over here -->
+      <div *ngIf="reuserregisterform.controls.Password.touched">
+        <div
+          *ngIf="reuserregisterform.controls.Password.hasError('required')"
+          class=""
+        >
+          <span class="text-danger">The Password Field Is Required</span>
+        </div>
+        <div
+          *ngIf="reuserregisterform.controls.Password.hasError('pattern')"
+          class=""
+        >
+          <span class="text-danger"
+            >The Password Should Contain One Uppercase, One Lowercase, One
+            Number and One Symbol and Should be 8 Characters Long</span
+          >
+        </div>
+      </div>
     </div>
 
     <!-- Date of Birth  -->
     <div class="form-group">
       <label for="dob">Date Of Birth</label>
-      <input type="date" id="dob" class="form-control" form />
+      <input
+        type="date"
+        id="dob"
+        class="form-control"
+        formControlName="DateOfBirth"
+        [max]="maxDate"
+        for
+      />
       <!-- Render the Error Message over here -->
+      <div *ngIf="reuserregisterform.controls.DateOfBirth.touched">
+        <div
+          *ngIf="reuserregisterform.controls.DateOfBirth.hasError('required')"
+          class=""
+        >
+          <span class="text-danger">The Date Of Birth Field Is Required</span>
+        </div>
+        <div
+          *ngIf="reuserregisterform.controls.DateOfBirth.hasError('futureDate')"
+          class=""
+        >
+          <span class="text-danger"
+            >The Date of Birth Should Not Contain the Future Date.</span
+          >
+        </div>
+      </div>
     </div>
 
     <!-- age text box -->
     <div class="form-group">
       <label for="age">Age</label>
-      <input type="number" id="age" class="form-control" disabled />
+      <input
+        type="number"
+        id="age"
+        class="form-control"
+        formControlName="Age"
+      />
       <span class="help-block">
         Age Field will be autocalculated after assigning the Date of Birth
       </span>
@@ -81,11 +232,33 @@
     <div class="form-group">
       <label>Gender</label>
       <div>
-        <div class="radio-inline"><input type="radio" id="gender" /> Male</div>
         <div class="radio-inline">
-          <input type="radio" id="gender" /> Female
+          <input
+            type="radio"
+            id="gender-male"
+            formControlName="Gender"
+            value="Male"
+          />
+          <label for="gender-male">Male</label>
         </div>
-        <div class="radio-inline"><input type="radio" id="gender" /> Other</div>
+        <div class="radio-inline">
+          <input
+            type="radio"
+            id="gender-female"
+            formControlName="Gender"
+            value="Female"
+          />
+          <label for="gender-female">Female</label>
+        </div>
+        <div class="radio-inline">
+          <input
+            type="radio"
+            id="gender-other"
+            formControlName="Gender"
+            value="Other"
+          />
+          <label for="gender-other">Other</label>
+        </div>
       </div>
     </div>
 
@@ -99,6 +272,7 @@
           id="phoneno"
           class="form-control"
           placeholder="9909938333"
+          formControlName="PhoneNo"
         />
       </div>
       <!-- Render the Error Message over here -->
@@ -111,6 +285,7 @@
         id="address"
         placeholder="Enter Address Over Here"
         class="form-control"
+        formControlName="Address"
       ></textarea>
       <!-- Render the Error Message over here -->
     </div>
@@ -118,8 +293,15 @@
     <!-- State Dropdown -->
     <div class="form-group">
       <label for="state">State</label>
-      <select id="state" class="form-control">
+      <select
+        id="state"
+        class="form-control"
+        #stateselection
+        (change)="changeCityAccordingtoState(stateselection)"
+        formControlName="State"
+      >
         <option value="">Select State</option>
+        <option [value]="st" *ngFor="let st of state">{{ st }}</option>
       </select>
       <!-- Render the Error Message over here -->
     </div>
@@ -127,8 +309,9 @@
     <!-- City -->
     <div class="form-group">
       <label for="city">City</label>
-      <select id="city" class="form-control">
+      <select id="city" class="form-control" formControlName="City">
         <option value="">Select City</option>
+        <option [value]="city" *ngFor="let city of cities">{{ city }}</option>
       </select>
       <!-- Render the Error Message over here -->
     </div>
@@ -136,14 +319,18 @@
     <!-- Interests Checkbox -->
     <div class="form-group">
       <label>Interests</label>
-      <div>
-        <div class="checkbox-inline">
-          <input type="checkbox" id="int1" />
-          <label for="int1"> Interest 1</label>
-        </div>
-        <div class="checkbox-inline">
-          <input type="checkbox" id="int1" />
-          <label for="int1"> Interest 1</label>
+      <div formArrayName="IdofInterests" *ngIf="interestlist">
+        <div
+          class="checkbox-inline"
+          *ngFor="let interest of interestlist.interests; let i = index"
+        >
+          <input
+            type="checkbox"
+            [id]="interest.InterestId"
+            [formControlName]="i"
+            [value]="interest.InterestId"
+          />
+          <label [htmlFor]="interest.InterestId">{{ interest.Interest }}</label>
         </div>
       </div>
       <!-- Render the Error Message over here -->

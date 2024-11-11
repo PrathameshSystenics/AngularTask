@@ -38,7 +38,14 @@
       <div *ngIf="uploadedimageurl">
         <span class="font-bold">Preview : </span>
         <div class="upload-image-wrapper">
-          <img [src]="uploadedimageurl" alt="Uploaded Image" />
+          <img
+            [src]="uploadedimageurl"
+            alt="Uploaded Image"
+            class="img-thumbnail"
+          />
+          <button class="btn btn-default" (click)="removeUploadedImage()">
+            Remove <span class="glyphicon glyphicon-trash"></span>
+          </button>
         </div>
       </div>
       <div
@@ -158,8 +165,12 @@
           #passwordinput
         />
         <div class="input-group-btn">
-          <button class="btn btn-default" (click)="toggleEye(passwordinput)" type="button">
-            <span class="glyphicon glyphicon-eye-open " id="eye-icon"></span>
+          <button
+            class="btn btn-default"
+            (click)="toggleEye(passwordinput)"
+            type="button"
+          >
+            <span class="glyphicon glyphicon-eye-open" id="eye-icon"></span>
           </button>
         </div>
       </div>
@@ -192,7 +203,8 @@
         class="form-control"
         formControlName="DateOfBirth"
         [max]="maxDate"
-        for
+        #dobele
+        (change)="onDobChange(dobele)"
       />
       <!-- Render the Error Message over here -->
       <div *ngIf="reuserregisterform.controls.DateOfBirth.touched">
@@ -221,11 +233,29 @@
         id="age"
         class="form-control"
         formControlName="Age"
+        readonly
       />
       <span class="help-block">
         Age Field will be autocalculated after assigning the Date of Birth
       </span>
       <!-- Render the Error Message over here -->
+      <div *ngIf="reuserregisterform.controls.Age.touched">
+        <div
+          *ngIf="reuserregisterform.controls.Age.hasError('required')"
+          class=""
+        >
+          <span class="text-danger">The Age Field Is Required</span>
+        </div>
+        <div
+          *ngIf="reuserregisterform.controls.Age.hasError('WrongAge')"
+          class=""
+        >
+          <span class="text-danger"
+            >The Entered Age does not match with Date Of Birth, Reset the Date
+            Of Birth again to Calculate the Age</span
+          >
+        </div>
+      </div>
     </div>
 
     <!-- Gender Field -->
@@ -260,6 +290,14 @@
           <label for="gender-other">Other</label>
         </div>
       </div>
+      <div *ngIf="reuserregisterform.controls.Gender.touched">
+        <div
+          *ngIf="reuserregisterform.controls.Gender.hasError('required')"
+          class=""
+        >
+          <span class="text-danger">The Gender Field Is Required</span>
+        </div>
+      </div>
     </div>
 
     <!-- phone no -->
@@ -273,9 +311,28 @@
           class="form-control"
           placeholder="9909938333"
           formControlName="PhoneNo"
+          #phonenoinput
+          pattern="^[0-9]{10}$"
+          (keypress)="DontAllowCharacter($event,phonenoinput)"
         />
       </div>
       <!-- Render the Error Message over here -->
+      <div *ngIf="reuserregisterform.controls.PhoneNo.touched">
+        <div
+          *ngIf="reuserregisterform.controls.PhoneNo.hasError('required')"
+          class=""
+        >
+          <span class="text-danger">The Phone Number Field Is Required</span>
+        </div>
+        <div
+          *ngIf="reuserregisterform.controls.PhoneNo.hasError('pattern')"
+          class=""
+        >
+          <span class="text-danger"
+            >The Phone Number should not contain any Characters or Spaces and should contain 10 digits only.</span
+          >
+        </div>
+      </div>
     </div>
 
     <!-- Address Field -->

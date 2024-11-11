@@ -51,4 +51,23 @@ export class UserService {
     return this.http.get<ListInterest>('/api/user/interests');
   }
 
+  // calculates the age of the passed dateofbirth
+  calculateAge(dateofbirthstring: string): number {
+    const dateofbirth = new Date(dateofbirthstring)
+    const today = new Date();
+
+    // Calculate the difference in years
+    let age = today.getFullYear() - dateofbirth.getFullYear();
+
+    // Adjust if the birth date hasn't occurred yet this year
+    const monthDifference = today.getMonth() - dateofbirth.getMonth();
+    const dayDifference = today.getDate() - dateofbirth.getDate();
+
+    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+      age--;
+    }
+
+    return age;
+  }
+
 }

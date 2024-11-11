@@ -73,7 +73,7 @@ export class UsersComponent implements OnInit {
   );
 
   // max date or current date not able to select the future date
-  maxDate: string = dayjs().subtract(1,"day").format('YYYY-MM-DD');
+  maxDate: string = dayjs().subtract(1, "day").format('YYYY-MM-DD');
 
   reuserregisterform: FormGroup<UserRegisterForm> =
     new FormGroup<UserRegisterForm>({
@@ -99,7 +99,7 @@ export class UsersComponent implements OnInit {
         Validators.required,
         UserFormValidator.pastDate,
       ]),
-      Age: new FormControl<number>(0, [Validators.required]),
+      Age: new FormControl<number>(0, [Validators.required, UserFormValidator.checkAge()]),
       Gender: new FormControl<string>('Male', [Validators.required]),
       State: new FormControl<State | null>('', [Validators.required]),
       City: new FormControl<City | null>('', [Validators.required]),
@@ -114,6 +114,13 @@ export class UsersComponent implements OnInit {
 
   onAlertBoxClose() {
     this.isAlertBoxOpen = false;
+  }
+
+  // remove the image selected
+  removeUploadedImage() {
+    this.uploadedimage = null;
+    this.uploadedimageurl = ""
+    this.imageInput.nativeElement.value = null
   }
 
   setAlerts(open: boolean, message: string, alerttype: AlertType) {
@@ -207,5 +214,17 @@ export class UsersComponent implements OnInit {
     passwordinput.type =
       passwordinput.type === 'password' ? 'text' : 'password';
     document.getElementById('eye-icon').classList.toggle('glyphicon-eye-close');
+  }
+
+  // auto select the age when the user clicks on the dateof birth
+  onDobChange(inputele: HTMLInputElement) {
+    this.reuserregisterform.controls.Age.patchValue(this.userservice.calculateAge(inputele.value))
+  }
+
+  // Don't Allow the Character to be entered into the phone input field
+  DontAllowCharacter(event: KeyboardEvent, inputele: HTMLInputElement) {
+    if (Number.isNaN(Number(event.key))) {
+      event.preventDefault()
+    }
   }
 }

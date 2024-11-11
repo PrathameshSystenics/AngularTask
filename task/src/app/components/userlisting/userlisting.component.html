@@ -4,6 +4,14 @@
     User Lists
   </h3>
 
+  <app-alertbox
+    [Open]="isAlertBoxOpen"
+    [type]="alerttype"
+    (close)="onAlertClose()"
+  >
+    <div>{{ message }}</div>
+  </app-alertbox>
+
   <div class="margin-top">
     <table class="table table-bordered table-hover table-responsive">
       <thead>
@@ -19,7 +27,7 @@
       </thead>
       <tbody>
         <tr *ngIf="!isLoading; else rowloader"></tr>
-        <tr class="bg-danger" *ngIf="userlisting.count === 0">
+        <tr class="bg-danger" *ngIf="userlisting.count === 0 && !isLoading">
           <td class="text-center text-danger font-bold" colspan="6">
             No Rows Found
           </td>
@@ -94,7 +102,11 @@
                 Edit
                 <span class="glyphicon glyphicon-edit"></span>
               </button>
-              <button type="button" class="btn btn-danger btn-sm">
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="onDelete(user)"
+              >
                 Delete <span class="glyphicon glyphicon-trash"></span>
               </button>
             </div>
@@ -116,3 +128,19 @@
     </td>
   </tr>
 </ng-template>
+
+<app-modal
+  title="Confirmation"
+  [type]="'Delete'"
+  [open]="isModalOpen"
+  (cancel)="this.isModalOpen = false"
+  (confirm)="modalConfirm()"
+>
+  <div *ngIf="selectedUser">
+    <p>
+      Are you sure you want to delete The User with <strong>ID :</strong>
+      <span>{{ selectedUser.Id }}</span> and <strong>Name :</strong>
+      <span>{{ selectedUser.FirstName + " " + selectedUser.LastName }}</span>
+    </p>
+  </div>
+</app-modal>

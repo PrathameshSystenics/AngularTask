@@ -14,6 +14,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { AlertboxComponent } from './components/alertbox/alertbox.component';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 export const BASE_URL = new InjectionToken<string>("BASE_URL")
 
@@ -27,7 +28,8 @@ export const BASE_URL = new InjectionToken<string>("BASE_URL")
     LoaderComponent,
     NotFoundComponent,
     ModalComponent,
-    AlertboxComponent
+    AlertboxComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,

@@ -21,6 +21,10 @@ export class UserlistingComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
+
+    this.userservice.notify$.subscribe((data) => {
+      this.refereshTable()
+    });
     this.refereshTable();
   }
 
@@ -38,7 +42,7 @@ export class UserlistingComponent implements OnInit {
         this.isLoading = false;
         this.isAlertBoxOpen = true;
         this.alerttype = 'Danger';
-        this.message = "Something Went Wrong while Fetching the User."
+        this.message = 'Something Went Wrong while Fetching the User.';
       },
     });
   }
@@ -58,7 +62,7 @@ export class UserlistingComponent implements OnInit {
   modalConfirm() {
     this.userservice.deleteUser(this.selectedUser.Id).subscribe({
       next: (data) => {
-        this.refereshTable();
+        this.userservice.notifyreferesh.emit("data");
 
         // setting the alert box with some message
         this.isAlertBoxOpen = true;
@@ -68,7 +72,7 @@ export class UserlistingComponent implements OnInit {
         this.isModalOpen = false;
       },
       error: (err) => {
-        this.message = "Some Thing Went Wrong while Deleting the User.";
+        this.message = 'Some Thing Went Wrong while Deleting the User.';
         this.isAlertBoxOpen = true;
         this.alerttype = 'Danger';
       },
@@ -77,4 +81,6 @@ export class UserlistingComponent implements OnInit {
       },
     });
   }
+
+
 }

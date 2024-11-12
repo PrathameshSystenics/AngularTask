@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { EventEmitter, inject, Injectable } from '@angular/core';
 import { delay, map, Observable } from 'rxjs';
 import { ListUser } from '../Models/user';
 import { HttpClient } from '@angular/common/http';
@@ -16,6 +16,10 @@ export class UserService {
   private http: HttpClient = inject(HttpClient);
   // injecting the base url value
   private url: string = inject(BASE_URL);
+
+  notifyreferesh: EventEmitter<any> = new EventEmitter<any>();
+
+  notify$: Observable<any> = this.notifyreferesh.asObservable();
 
   // Returns the list of the users.
   getUsers(): Observable<ListUser> {
@@ -53,7 +57,7 @@ export class UserService {
 
   // calculates the age of the passed dateofbirth
   calculateAge(dateofbirthstring: string): number {
-    const dateofbirth = new Date(dateofbirthstring)
+    const dateofbirth = new Date(dateofbirthstring);
     const today = new Date();
 
     // Calculate the difference in years
@@ -66,8 +70,11 @@ export class UserService {
     if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
       age--;
     }
-
     return age;
   }
 
+  // Adding the user by passing the formdata
+  addUser(formdata: FormData): Observable<Message> {
+    return this.http.post('/api/user/register', formdata);
+  }
 }

@@ -3,10 +3,8 @@ import { UserService } from '../Services/user.service';
 import { inject } from '@angular/core';
 
 export class UserFormValidator {
-
-
   // Validator which checks if the selected date is not the future date.
-  static pastDate(control: AbstractControl): ValidationErrors {
+  static pastDate(control: AbstractControl): ValidationErrors | null {
     const date = new Date(control.value);
     const today = new Date();
 
@@ -22,17 +20,32 @@ export class UserFormValidator {
   // Checks the age by passing the dateofbirth.
   static checkAge(): ValidatorFn {
     // injecting the user service
-    const userserivce: UserService = inject(UserService)
+    const userserivce: UserService = inject(UserService);
     return function (control: AbstractControl): ValidationErrors | null {
-      const dateofbirth = control.parent?.get("DateOfBirth").value
+      const dateofbirth = control.parent?.get('DateOfBirth')?.value;
       if (dateofbirth) {
-        const calculatedage = userserivce.calculateAge(dateofbirth)
+        const calculatedage = userserivce.calculateAge(dateofbirth);
 
-        if (calculatedage !== control.value) {
-          return { WrongAge: true }
+        if (calculatedage !== control.value || calculatedage < 0) {
+          return { WrongAge: true };
         }
       }
       return null;
-    }
+    };
+  }
+
+  // ensures that at most passed number to be checked
+  static oneSelected(count: number): ValidatorFn {
+    return function (
+      control: AbstractControl<boolean[]>
+    ): ValidationErrors | null {
+      let truevaluescount: number = control.value.filter((value) => {
+        return value ? value : null;
+      }).length;
+      if (truevaluescount < count) {
+        return { OneSelected: true };
+      }
+      return null;
+    };
   }
 }

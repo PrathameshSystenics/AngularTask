@@ -17,6 +17,14 @@
 }
 
 input:not(input[type="file"]).ng-touched.ng-invalid,
-.input-error {
+.input-error,
+textarea.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
   border: 1px solid #a94442;
+}
+
+.form-group > label::after {
+  content: "*";
+  color: red;
+  margin-left: 4px;
 }

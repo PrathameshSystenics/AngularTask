@@ -228,9 +228,7 @@ export class UsersComponent implements OnInit {
   }
 
   // based on selected state change the cities
-  changeCityAccordingtoState(
-    selection: HTMLSelectElement | string,
-  ): void {
+  changeCityAccordingtoState(selection: HTMLSelectElement | string): void {
     this.cities =
       this.statecitylist[
         selection instanceof HTMLSelectElement ? selection.value : selection
@@ -283,6 +281,7 @@ export class UsersComponent implements OnInit {
   // when the file is upload its blob is created and shown the uploaded image
   fileUpload(): void {
     this.isFileDialogClosed = false;
+    this.edituploadedimageurl = null;
     let filetype = this.imageInput.nativeElement as HTMLInputElement;
 
     if (filetype.files?.length !== 0) {
@@ -365,8 +364,10 @@ export class UsersComponent implements OnInit {
 
   // resets the form
   resetForm(): void {
+    this.isFileDialogClosed = false;
     this.reuserregisterform.reset();
     this.removeUploadedImage();
+    this.reuserregisterform.markAsUntouched();
     this.reuserregisterform.patchValue({
       Age: 0,
       Gender: 'Male',

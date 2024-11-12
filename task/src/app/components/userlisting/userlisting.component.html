@@ -98,7 +98,11 @@
           </td>
           <td>
             <div class="d-flex-btn">
-              <button type="button" class="btn btn-primary btn-sm">
+              <button
+                type="button"
+                class="btn btn-primary btn-sm"
+                [routerLink]="'/edit/' + user.Id"
+              >
                 Edit
                 <span class="glyphicon glyphicon-edit"></span>
               </button>

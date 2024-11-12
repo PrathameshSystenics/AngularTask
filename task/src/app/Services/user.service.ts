@@ -1,6 +1,6 @@
 import { EventEmitter, inject, Injectable } from '@angular/core';
 import { delay, map, Observable } from 'rxjs';
-import { ListUser } from '../Models/user';
+import { IUserDetails, ListUser } from '../Models/user';
 import { HttpClient } from '@angular/common/http';
 import { BASE_URL } from '../app.module';
 import dayjs from 'dayjs';
@@ -75,6 +75,21 @@ export class UserService {
 
   // Adding the user by passing the formdata
   addUser(formdata: FormData): Observable<Message> {
-    return this.http.post('/api/user/register', formdata);
+    return this.http.post<Message>('/api/user/register', formdata);
+  }
+
+  // Updating the user details.
+  updateUser(formdata: FormData, userid: number): Observable<Message> {
+    return this.http.put<Message>(`/api/user/users/${userid}`, formdata);
+  }
+
+  // Getting the Details of the Single user
+  getSingleUser(userid: number): Observable<IUserDetails> {
+    return this.http.get<IUserDetails>(`/api/user/users/${userid}`).pipe(
+      map((value) => {
+        value.Profile = this.getImageUrl(value.Profile);
+        return value;
+      })
+    );
   }
 }

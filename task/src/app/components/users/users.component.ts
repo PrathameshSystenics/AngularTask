@@ -19,22 +19,21 @@ import {
 } from '@angular/forms';
 import { UserFormValidator } from '../../Validators/userform.validator';
 import dayjs from 'dayjs';
-import { IUserDetails } from '../../Models/user';
-import { data } from 'jquery';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface UserRegisterForm {
   FirstName: FormControl<string | null>;
   LastName: FormControl<string | null>;
   Email: FormControl<string | null>;
   Password: FormControl<string | null>;
-  DateOfBirth: FormControl<Date | null>;
+  DateOfBirth: FormControl<string | null>;
   Age: FormControl<number | null>;
   Gender: FormControl<string | null>;
   State: FormControl<State | null>;
   City: FormControl<City | null>;
   Address: FormControl<string | null>;
   PhoneNo: FormControl<string | null>;
-  ProfileImage: FormControl<File | null>;
+  ProfileImage: FormControl<File | string | null>;
   IdofInterests: FormArray<FormControl<boolean | null>>;
 }
 
@@ -47,6 +46,15 @@ export class UsersComponent implements OnInit {
   // injecting the user service
   private userservice: UserService = inject(UserService);
 
+  // injecting the activated route
+  private activeroute: ActivatedRoute = inject(ActivatedRoute);
+
+  // injecting the router
+  private router: Router = inject(Router);
+
+  // storing the user id
+  userid: number = null;
+
   // for storing the interest and state cities.
   statecitylist: StateListCity = {};
   interestlist: ListInterest = null as any;
@@ -58,10 +66,16 @@ export class UsersComponent implements OnInit {
   isAlertBoxOpen: boolean = false;
   alerttype: AlertType = 'Success';
 
+  // to show the loader
+  loadertoshow: boolean = false;
+
   // property to store the uploaded image
   uploadedimage: File | null = null;
   uploadedimageurl: string = '';
   isFileDialogClosed: boolean = false;
+
+  // getting the image of the uploaded while in edit mode
+  edituploadedimageurl: string | null = '';
 
   // get the input view children
   @ViewChild('profileimageinputfile')
@@ -96,7 +110,7 @@ export class UsersComponent implements OnInit {
           /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
         ),
       ]),
-      DateOfBirth: new FormControl<Date | null>(null, [
+      DateOfBirth: new FormControl<string | null>(null, [
         Validators.required,
         UserFormValidator.pastDate,
       ]),
@@ -125,8 +139,13 @@ export class UsersComponent implements OnInit {
     this.uploadedimage = null;
     this.uploadedimageurl = '';
     this.imageInput.nativeElement.value = null;
-    // TODO: handle when the edit page got the uploaded image
+    if (!this.edituploadedimageurl) {
+      this.isFileDialogClosed = true;
+      this.imageInput.nativeElement.classList.add('input-error');
+    }
+
     this.reuserregisterform.controls.ProfileImage.reset();
+    this.reuserregisterform.controls.ProfileImage.markAllAsTouched();
   }
 
   setAlerts(open: boolean, message: string, alerttype: AlertType): void {
@@ -152,6 +171,51 @@ export class UsersComponent implements OnInit {
         this.interestlist.interests.forEach((value) => {
           this.interestformarray.push(new FormControl<boolean | null>(false));
         });
+
+        // when the edit id is got then subscribe
+        this.activeroute.paramMap.subscribe((params) => {
+          this.userid = Number(params.get('id'));
+
+          if (this.userid) {
+            this.userservice.getSingleUser(this.userid).subscribe({
+              next: (value) => {
+                window.scrollTo({ behavior: 'smooth', top: 0 });
+                // resetting the interests when its selected again
+                this.interestformarray.reset();
+
+                this.reuserregisterform.patchValue({
+                  FirstName: value.FirstName,
+                  LastName: value.LastName,
+                  Email: value.Email,
+                  Password: value.Password,
+                  DateOfBirth: dayjs(value.DateOfBirth).format('YYYY-MM-DD'),
+                  Age: value.Age,
+                  Address: value.Address,
+                  ProfileImage: null,
+                  City: value.City,
+                  Gender: value.Gender,
+                  IdofInterests: [],
+                  PhoneNo: value.PhoneNo,
+                  State: value.State,
+                });
+                // Assigning the profile image
+                this.edituploadedimageurl = value.Profile;
+
+                // assigning the city according to the state
+                this.changeCityAccordingtoState(value.State);
+
+                // assigning the checkbox to true
+                this.convertToBooleanArray(value.ListofInterestId);
+              },
+              error: (err) => {
+                this.setAlerts(true, 'User Does Not Exist', 'Warning');
+                this.router.navigate(['user']);
+              },
+            });
+          } else if (Number.isNaN(this.userid)) {
+            this.router.navigate(['user']);
+          }
+        });
       },
       error: () => {
         this.setAlerts(
@@ -164,32 +228,54 @@ export class UsersComponent implements OnInit {
   }
 
   // based on selected state change the cities
-  changeCityAccordingtoState(selection: HTMLSelectElement): void {
-    this.cities = this.statecitylist[selection.value];
-    this.reuserregisterform.controls.City.reset('');
+  changeCityAccordingtoState(
+    selection: HTMLSelectElement | string,
+  ): void {
+    this.cities =
+      this.statecitylist[
+        selection instanceof HTMLSelectElement ? selection.value : selection
+      ];
+    if (selection instanceof HTMLSelectElement) {
+      this.reuserregisterform.controls.City.reset('');
+    }
   }
 
   // submit form
   submitForm(): void {
-
     this.checkAllInputsareValid();
+
     if (this.reuserregisterform.valid) {
-      // TODO: Handle for the edit page
       const formdata = this.toFormData(this.reuserregisterform.value);
-      this.userservice.addUser(formdata).subscribe({
-        next: (data) => {
-          this.setAlerts(true, data.message, 'Success');
+
+      const handleSuccess = (data: any) => {
+        this.setAlerts(true, data.message, 'Success');
+        if (this.userid) {
+          this.loadertoshow = true;
+          setTimeout(() => {
+            this.router.navigate(['user']);
+          }, 3000);
+        } else {
           this.resetForm();
-          window.scrollTo(0,0);
-          this.userservice.notifyreferesh.emit("data")
-        },
-        error: (err) => {
-          this.setAlerts(
-            true,
-            'Some Error Occured While Registering the User',
-            'Danger'
-          );
-        },
+        }
+        window.scrollTo(0, 0);
+        this.userservice.notifyreferesh.emit('data');
+      };
+
+      const handleError = () => {
+        this.setAlerts(
+          true,
+          'Some Error Occurred While Registering the User',
+          'Danger'
+        );
+      };
+
+      const action$ = this.userid
+        ? this.userservice.updateUser(formdata, this.userid)
+        : this.userservice.addUser(formdata);
+
+      action$.subscribe({
+        next: handleSuccess,
+        error: handleError,
       });
     }
   }
@@ -210,7 +296,6 @@ export class UsersComponent implements OnInit {
         this.uploadedimage = filetype?.files[0];
         filetype.classList.remove('input-error');
       } else {
-        console.log('callnig these');
         filetype.classList.add('input-error');
         this.uploadedimage = null;
         this.uploadedimageurl = '';
@@ -230,7 +315,7 @@ export class UsersComponent implements OnInit {
   fileUploadCancel(): void {
     let filetype = this.imageInput.nativeElement as HTMLInputElement;
     this.isFileDialogClosed = true;
-    if (!this.uploadedimage) {
+    if (!this.uploadedimage && !this.edituploadedimageurl) {
       filetype.classList.add('input-error');
     }
   }
@@ -256,6 +341,7 @@ export class UsersComponent implements OnInit {
     }
   }
 
+  // checks if all the input are valid or not
   checkAllInputsareValid(): void {
     if (this.reuserregisterform.invalid) {
       let controls: string[] = Object.keys(this.reuserregisterform.controls);
@@ -264,9 +350,14 @@ export class UsersComponent implements OnInit {
           value
         ] as AbstractControl;
         if (currentcontrol.invalid) {
+          if (value === 'ProfileImage' && !this.edituploadedimageurl) {
+            this.imageInput.nativeElement.classList.add('input-error');
+            this.isFileDialogClosed = true;
+          } else if (value === 'ProfileImage' && this.edituploadedimageurl) {
+            currentcontrol.setErrors(null);
+          }
+
           currentcontrol.markAllAsTouched();
-          this.isFileDialogClosed = true;
-          this.imageInput.nativeElement.classList.add('input-error');
         }
       });
     }
@@ -275,8 +366,13 @@ export class UsersComponent implements OnInit {
   // resets the form
   resetForm(): void {
     this.reuserregisterform.reset();
-    this.removeUploadedImage()
-    this.reuserregisterform.patchValue({ Age: 0, Gender: 'Male' });
+    this.removeUploadedImage();
+    this.reuserregisterform.patchValue({
+      Age: 0,
+      Gender: 'Male',
+      City: '',
+      State: '',
+    });
     this.imageInput.nativeElement.classList.remove('input-error');
   }
 
@@ -288,7 +384,7 @@ export class UsersComponent implements OnInit {
       if (value === 'ProfileImage') {
         formdata.append(value, this.uploadedimage);
       } else if (value === 'IdofInterests') {
-        formdata.append(value, this.convertToArray(user[value]));
+        formdata.append(value, this.convertToStringArray(user[value]));
       } else {
         formdata.append(value, user[value]);
       }
@@ -297,13 +393,24 @@ export class UsersComponent implements OnInit {
   }
 
   // converts the true value to id that should be submitted to the api
-  convertToArray(IdofInterests: boolean[]): any {
+  convertToStringArray(IdofInterests: boolean[]): string {
     let interestsid: number[] = [];
-    IdofInterests.forEach((value, index) => {
+    IdofInterests.map((value, index) => {
       if (value) {
         interestsid.push(this.interestlist.interests[index].InterestId);
       }
     });
     return `[${interestsid.toString()}]`;
+  }
+
+  // maps the id to the boolean value
+  convertToBooleanArray(actualInterestId: number[]): void {
+    let ptr: number = 0;
+    this.interestlist.interests.forEach((value, index) => {
+      if (value.InterestId === actualInterestId[ptr]) {
+        this.interestformarray.at(index).patchValue(true);
+        ptr++;
+      }
+    });
   }
 }

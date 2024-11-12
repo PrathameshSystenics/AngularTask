@@ -20,6 +20,7 @@ export interface IUserDetails {
     IdofInterests?: number[],
     IsDeleted: boolean,
     FormattedDate?: string
+    ListofInterestId?:number[]
 }
 
 export type ListUser = {

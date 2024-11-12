@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\training\\angularjs\\angulartask\\taskapi\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|d:\\training\\angularjs\\angulartask\\taskapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{513FC54C-B650-42DF-9BF7-259C51D289CB}|TaskAPI.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,31 +46,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-12T07:31:47.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Respository\\UserRepository.cs",
               "RelativeDocumentMoniker": "Respository\\UserRepository.cs",
               "ToolTip": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Respository\\UserRepository.cs",
               "RelativeToolTip": "Respository\\UserRepository.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAhwDAAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAEkAAAAAAAAAAAA3wGcAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T06:28:00.982Z"
+              "WhenOpened": "2024-11-11T06:28:00.982Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Utilities.cs",
               "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Utils\\Utilities.cs",
               "RelativeDocumentMoniker": "Utils\\Utilities.cs",
               "ToolTip": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Utils\\Utilities.cs",
               "RelativeToolTip": "Utils\\Utilities.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAQwEMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAawDYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T06:29:44.07Z"
+              "WhenOpened": "2024-11-11T06:29:44.07Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Web.config",
               "RelativeDocumentMoniker": "Web.config",
@@ -79,20 +98,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
               "ToolTip": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\Controllers\\UserController.cs",
               "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAIwGMAAACLAAAAAAAAAA==",
+              "ViewState": "AgIAADoAAAAAAAAAAAApwEwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-11T12:10:39.871Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "WebApiConfig.cs",
               "DocumentMoniker": "D:\\Training\\AngularJS\\AngularTask\\TaskAPI\\App_Start\\WebApiConfig.cs",
               "RelativeDocumentMoniker": "App_Start\\WebApiConfig.cs",

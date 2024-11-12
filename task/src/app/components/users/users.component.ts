@@ -168,7 +168,7 @@ export class UsersComponent implements OnInit {
         this.state = Object.keys(this.statecitylist);
 
         // adding all the formcontrols in the formarray
-        this.interestlist.interests.forEach((value) => {
+        this.interestlist.interests.forEach(() => {
           this.interestformarray.push(new FormControl<boolean | null>(false));
         });
 

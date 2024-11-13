@@ -79,7 +79,7 @@ export class UsersComponent implements OnInit {
 
   // get the input view children
   @ViewChild('profileimageinputfile')
-  imageInput: ElementRef = null as any;
+  imageInput: ElementRef<HTMLInputElement> = null as any;
 
   // creating the reactive forms
   interestformarray = new FormArray<FormControl<boolean>>(
@@ -88,7 +88,7 @@ export class UsersComponent implements OnInit {
   );
 
   // max date or current date not able to select the future date
-  maxDate: string = dayjs().subtract(1, 'day').format('YYYY-MM-DD');
+  maxDate: string = dayjs().subtract(1, 'year').format('YYYY-MM-DD');
 
   reuserregisterform: FormGroup<UserRegisterForm> =
     new FormGroup<UserRegisterForm>({
@@ -138,12 +138,11 @@ export class UsersComponent implements OnInit {
   removeUploadedImage(): void {
     this.uploadedimage = null;
     this.uploadedimageurl = '';
-    this.imageInput.nativeElement.value = null;
+    this.imageInput.nativeElement ? this.imageInput.nativeElement.value = null : null;
     if (!this.edituploadedimageurl) {
       this.isFileDialogClosed = true;
       this.imageInput.nativeElement.classList.add('input-error');
     }
-
     this.reuserregisterform.controls.ProfileImage.reset();
     this.reuserregisterform.controls.ProfileImage.markAllAsTouched();
   }
@@ -231,7 +230,7 @@ export class UsersComponent implements OnInit {
   changeCityAccordingtoState(selection: HTMLSelectElement | string): void {
     this.cities =
       this.statecitylist[
-        selection instanceof HTMLSelectElement ? selection.value : selection
+      selection instanceof HTMLSelectElement ? selection.value : selection
       ];
     if (selection instanceof HTMLSelectElement) {
       this.reuserregisterform.controls.City.reset('');
@@ -243,23 +242,27 @@ export class UsersComponent implements OnInit {
     this.checkAllInputsareValid();
 
     if (this.reuserregisterform.valid) {
+      this.userid ? this.loadertoshow = true : null;
       const formdata = this.toFormData(this.reuserregisterform.value);
 
       const handleSuccess = (data: any) => {
-        this.setAlerts(true, data.message, 'Success');
+
+        this.loadertoshow = false
+        window.scrollTo(0, 0);
+        this.userservice.notifyreferesh.emit({
+          isAlertBoxOpen: true,
+          message: this.userid ? "User Updated Successfully!" : "User Registered Successfully",
+          alerttype: "Success"
+        })
         if (this.userid) {
-          this.loadertoshow = true;
-          setTimeout(() => {
-            this.router.navigate(['user']);
-          }, 3000);
+          this.router.navigate(['user']);
         } else {
           this.resetForm();
         }
-        window.scrollTo(0, 0);
-        this.userservice.notifyreferesh.emit('data');
       };
 
       const handleError = () => {
+        this.loadertoshow = false
         this.setAlerts(
           true,
           'Some Error Occurred While Registering the User',
@@ -281,7 +284,6 @@ export class UsersComponent implements OnInit {
   // when the file is upload its blob is created and shown the uploaded image
   fileUpload(): void {
     this.isFileDialogClosed = false;
-    this.edituploadedimageurl = null;
     let filetype = this.imageInput.nativeElement as HTMLInputElement;
 
     if (filetype.files?.length !== 0) {

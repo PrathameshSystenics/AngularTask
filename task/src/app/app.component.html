@@ -1,5 +1,14 @@
 <app-header></app-header>
 
 <div class="container">
-    <router-outlet></router-outlet>
+  <app-alertbox
+    [Open]="isAlertBoxOpen"
+    [type]="alerttype"
+    (close)="onAlertBoxClose()"
+  >
+    <div>
+      {{ message }}
+    </div>
+  </app-alertbox>
+  <router-outlet></router-outlet>
 </div>

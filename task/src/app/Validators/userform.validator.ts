@@ -26,7 +26,7 @@ export class UserFormValidator {
       if (dateofbirth) {
         const calculatedage = userserivce.calculateAge(dateofbirth);
 
-        if (calculatedage !== control.value || calculatedage < 0) {
+        if (calculatedage !== control.value || calculatedage < 1 || !dateofbirth) {
           return { WrongAge: true };
         }
       }

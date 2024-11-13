@@ -75,5 +75,20 @@ namespace TaskAPI.Utils
         {
             return File.Exists(filepath);
         }
+
+        /// <summary>
+        /// Deletes the file from the given <paramref name="filepath"/>.
+        /// </summary>
+        /// <param name="filepath"> To be Deleted</param>
+        /// <returns><see langword="true"/> if the File is Deleted otherwise <see langword="false"/></returns>
+        public static bool DeleteFile(string filepath)
+        {
+            if (IsFilePresent(filepath))
+            {
+                File.Delete(filepath);
+                return true;
+            }
+            return false;
+        }
     }
 }

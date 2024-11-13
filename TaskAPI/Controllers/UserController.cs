@@ -6,14 +6,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using TaskAPI.Models;
 using TaskAPI.Respository;
 using TaskAPI.Utils;
 
 namespace TaskAPI.Controllers
 {
-    //[EnableCors("*","*","*")]
     public class UserController : ApiController
     {
 
@@ -98,6 +96,10 @@ namespace TaskAPI.Controllers
                     if (user.DateOfBirth >= DateTime.Now)
                     {
                         return Content<Message>(HttpStatusCode.Forbidden, new Message() { message = "Birthdate cannot be in the future" });
+                    }
+                    else if (user.Age <= 0)
+                    {
+                        return Content<Message>(HttpStatusCode.Forbidden, new Message() { message = "Age Cannot be 0 or less than it." });
                     }
                     if (profileimageurl != null)
                     {
@@ -247,8 +249,18 @@ namespace TaskAPI.Controllers
                     user.Id = id;
                     user.InterestsId = idofinterests;
 
+                    if (user.DateOfBirth >= DateTime.Now)
+                    {
+                        return Content<Message>(HttpStatusCode.Forbidden, new Message() { message = "Birthdate cannot be in the future" });
+                    }
+                    else if (user.Age <= 0)
+                    {
+                        return Content<Message>(HttpStatusCode.Forbidden, new Message() { message = "Age Cannot be 0 or less than it." });
+                    }
+
                     if (user.ProfileImage != null)
                     {
+                        Utilities.DeleteFile(Path.Combine(HttpContext.Current.Request.MapPath("~/Content/Images"), user.Profile));
                         user.Profile = Utilities.SaveFile(user.ProfileImage.Buffer, HttpContext.Current.Request.MapPath("~/Content/Images"), user.ProfileImage.FileName);
                     }
 

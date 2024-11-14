@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test --watch",
+    "codecoverage":"ng test --code-coverage && cd ./coverage/task && vite"
   },
   "private": true,
   "dependencies": {

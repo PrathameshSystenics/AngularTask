@@ -41,7 +41,7 @@ export const BASE_URL = new InjectionToken<string>("BASE_URL")
   providers: [provideHttpClient(
     withInterceptors([apiInterceptor])
   ),
-  { provide: BASE_URL, useValue: "https://localhost:44315" }
+  { provide: BASE_URL, useValue: "http://localhost:44315" }
   ],
   bootstrap: [AppComponent]
 })

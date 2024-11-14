@@ -138,7 +138,9 @@ export class UsersComponent implements OnInit {
   removeUploadedImage(): void {
     this.uploadedimage = null;
     this.uploadedimageurl = '';
-    this.imageInput.nativeElement ? this.imageInput.nativeElement.value = null : null;
+    this.imageInput.nativeElement
+      ? (this.imageInput.nativeElement.value = null)
+      : null;
     if (!this.edituploadedimageurl) {
       this.isFileDialogClosed = true;
       this.imageInput.nativeElement.classList.add('input-error');
@@ -230,7 +232,7 @@ export class UsersComponent implements OnInit {
   changeCityAccordingtoState(selection: HTMLSelectElement | string): void {
     this.cities =
       this.statecitylist[
-      selection instanceof HTMLSelectElement ? selection.value : selection
+        selection instanceof HTMLSelectElement ? selection.value : selection
       ];
     if (selection instanceof HTMLSelectElement) {
       this.reuserregisterform.controls.City.reset('');
@@ -242,18 +244,19 @@ export class UsersComponent implements OnInit {
     this.checkAllInputsareValid();
 
     if (this.reuserregisterform.valid) {
-      this.userid ? this.loadertoshow = true : null;
+      this.userid ? (this.loadertoshow = true) : null;
       const formdata = this.toFormData(this.reuserregisterform.value);
 
       const handleSuccess = (data: any) => {
-
-        this.loadertoshow = false
+        this.loadertoshow = false;
         window.scrollTo(0, 0);
         this.userservice.notifyreferesh.emit({
           isAlertBoxOpen: true,
-          message: this.userid ? "User Updated Successfully!" : "User Registered Successfully",
-          alerttype: "Success"
-        })
+          message: this.userid
+            ? 'User Updated Successfully!'
+            : 'User Registered Successfully',
+          alerttype: 'Success',
+        });
         if (this.userid) {
           this.router.navigate(['user']);
         } else {
@@ -262,7 +265,7 @@ export class UsersComponent implements OnInit {
       };
 
       const handleError = () => {
-        this.loadertoshow = false
+        this.loadertoshow = false;
         this.setAlerts(
           true,
           'Some Error Occurred While Registering the User',

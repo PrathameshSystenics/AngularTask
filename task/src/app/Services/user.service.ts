@@ -2,11 +2,11 @@ import { EventEmitter, inject, Injectable } from '@angular/core';
 import { delay, map, Observable } from 'rxjs';
 import { IUserDetails, ListUser } from '../Models/user';
 import { HttpClient } from '@angular/common/http';
-import { BASE_URL } from '../app.module';
 import dayjs from 'dayjs';
 import { Message } from '../Models/message';
 import { StateListCity } from '../Models/statecity';
 import { ListInterest } from '../Models/interest';
+import { BASE_URL } from '../app.module';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class UserService {
   // injecting the httpclient service
   private http: HttpClient = inject(HttpClient);
   // injecting the base url value
-  private url: string = inject(BASE_URL);
+  url: string = inject(BASE_URL);
 
   notifyreferesh: EventEmitter<any> = new EventEmitter<any>();
 
@@ -23,7 +23,7 @@ export class UserService {
 
   // Returns the list of the users.
   getUsers(): Observable<ListUser> {
-    return this.http.get<ListUser>('/api/user/users').pipe(
+    return this.http.get<ListUser>(`/api/user/users`).pipe(
       map((value) => {
         let user: ListUser = value;
         user.users.map((u) => {
@@ -36,7 +36,7 @@ export class UserService {
   }
 
   // using the filename getting the image url
-  getImageUrl(filename: string): string {
+  private getImageUrl(filename: string): string {
     return this.url + '/content/images/' + filename;
   }
 
@@ -47,12 +47,12 @@ export class UserService {
 
   // get the state and city
   getStateCity(): Observable<StateListCity> {
-    return this.http.get<StateListCity>('/api/user/getstateandcity');
+    return this.http.get<StateListCity>(`/api/user/getstateandcity`);
   }
 
   // get the interest list
   getInterests(): Observable<ListInterest> {
-    return this.http.get<ListInterest>('/api/user/interests');
+    return this.http.get<ListInterest>(`/api/user/interests`);
   }
 
   // calculates the age of the passed dateofbirth
@@ -75,7 +75,7 @@ export class UserService {
 
   // Adding the user by passing the formdata
   addUser(formdata: FormData): Observable<Message> {
-    return this.http.post<Message>('/api/user/register', formdata);
+    return this.http.post<Message>(`/api/user/register`, formdata);
   }
 
   // Updating the user details.

@@ -7,7 +7,7 @@ export interface IUserDetails {
     LastName: string,
     Email: string,
     Password: string,
-    DateOfBirth: Date,
+    DateOfBirth: string,
     Age: number,
     Gender: string,
     State: State,

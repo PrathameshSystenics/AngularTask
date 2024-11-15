@@ -4,7 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "user", component: UsersComponent },
   { path: "edit/:id", component: UsersComponent },

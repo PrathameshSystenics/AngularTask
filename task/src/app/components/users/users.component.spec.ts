@@ -521,4 +521,23 @@ describe('Users Component', () => {
     });
     expect(routermock.navigate).toHaveBeenCalledOnceWith(['user']);
   });
+
+  it('Should return all the error when the inputs in the form are invalid', () => {
+    fixture.detectChanges();
+
+    component.submitForm()
+
+    expect(component.reuserregisterform.invalid).toBeTrue()
+    expect(component.reuserregisterform.controls.FirstName.touched).toBeTrue()
+  });
+
+  it("Should not throw error when the image is not uploaded while in edit form",()=>{
+    fixture.detectChanges()
+
+    component.edituploadedimageurl="filename.jpg"
+    component.submitForm()
+
+    expect(component.reuserregisterform.controls.FirstName.touched).toBeTrue()
+    expect(component.reuserregisterform.controls.ProfileImage.errors).toBeFalsy()
+  })
 });
